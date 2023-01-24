@@ -6,6 +6,7 @@ import {AuthService} from "../../../services/auth.service";
 import {CategoriesService} from "../../../services/categories.service";
 import {Category} from "../../../model/product.model";
 import {ca} from "date-fns/locale";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-nav',
@@ -20,8 +21,10 @@ export class NavComponent implements OnInit, OnDestroy {
   categoriesUnsubscribable: Unsubscribable | null = null;
 
   constructor(private storeService: StoreService,
+              private router:Router,
               private categoryService: CategoriesService,
               private authService: AuthService,) {
+
   }
 
   ngOnDestroy() {
@@ -31,6 +34,10 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+      this.authService.user$.subscribe(user=>
+    {
+      this.profile=user;
+    });
     this.storeService.myCart$.subscribe(products => {
       this.counter = products.length;
     })
@@ -40,10 +47,9 @@ export class NavComponent implements OnInit, OnDestroy {
   login() {
     this.authService.loginAndGet('test5@test5.com',
       '12345678').subscribe(user => {
-      this.profile = user;
+      this.router.navigate(['/profile'])
     });
   }
-
   toggleMenu() {
     this.activeMenu = !this.activeMenu;
   }
@@ -52,6 +58,12 @@ export class NavComponent implements OnInit, OnDestroy {
     this.categoriesUnsubscribable = this.categoryService.getAll( ).subscribe(categories => {
       this.categories = categories;
     });
+  }
+
+  logout() {
+    this.authService.logout();
+    this.profile=null;
+    this.router.navigate(['/home'])
   }
 }
 

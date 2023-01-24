@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {CreateUserDTO, User} from "../model/user.model";
-import {Observable, switchMap, tap} from "rxjs";
+import {BehaviorSubject, Observable, switchMap, tap} from "rxjs";
 import {Auth} from "../model/auth.model";
 import {TokenService} from "./token.service";
+import {Product} from "../model/product.model";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,9 @@ import {TokenService} from "./token.service";
 export class AuthService {
 
   private url = `${environment.url}/api/auth`;
+  private user = new BehaviorSubject<User|null>(null);
+
+  user$ = this.user.asObservable();
 
   constructor(
     private http: HttpClient,
@@ -34,8 +38,14 @@ export class AuthService {
   }
 
   profile(): Observable<User> {
-    return this.http.get<User>(`${this.url}/profile`);
+    return this.http.get<User>(`${this.url}/profile`)
+      .pipe(
+        tap(user=>this.user.next(user))
+      );
   }
 
 
+  logout(){
+    this.tokenService.removeToken();
+  }
 }
