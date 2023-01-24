@@ -9,7 +9,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TimeInterceptor} from "./interceptors/time.interceptor";
 import {TokenInterceptor} from "./interceptors/token.interceptor";
 import {NotFoundComponent} from "./not-found/not-found.component";
-import {QuicklinkModule} from "ngx-quicklink";
 
 
 @NgModule({
@@ -20,8 +19,7 @@ import {QuicklinkModule} from "ngx-quicklink";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    QuicklinkModule
+    HttpClientModule
   ],
   providers: [
     {
