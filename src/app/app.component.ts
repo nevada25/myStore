@@ -1,4 +1,5 @@
-import {Component} from '@angular/core'; import {UsersService} from "./services/users.service";
+import {Component} from '@angular/core';
+import {UsersService} from "./services/users.service";
 import {FilesService} from "./services/files.service";
 
 @Component({
@@ -20,7 +21,8 @@ export class AppComponent {
     this.usersService.create({
       email: 'test5@test5.com',
       password: '12345678',
-      name: 'Kevin'
+      name: 'Kevin',
+      role: 'admin'
     }).subscribe(data => {
       console.log(data);
     })

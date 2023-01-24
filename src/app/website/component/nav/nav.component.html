@@ -35,7 +35,9 @@
       <div class="account">
         <button (click)="login()" *ngIf="!profile else elseLogin">Login</button>
         <ng-template #elseLogin>
-          {{ profile?.email}}
+          <a routerLink="/profile">
+            {{ profile?.email}}
+          </a>
         </ng-template>
       </div>
       <div class="cart">
