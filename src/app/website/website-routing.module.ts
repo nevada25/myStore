@@ -10,6 +10,7 @@ import {RecoveryComponent} from "./pages/recovery/recovery.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
 import {ProductDetailComponent} from "./pages/product-detail/product-detail.component";
 import {AuthGuard} from "../guards/auth.guard";
+import {ExitGuard} from "../guards/exit.guard";
 
 const routes: Routes = [
   {
@@ -38,6 +39,9 @@ const routes: Routes = [
         component: LoginComponent
       }, {
         path: 'register',
+        canDeactivate: [
+          ExitGuard
+        ],
         component: RegisterComponent
       }, {
         path: 'recovery',

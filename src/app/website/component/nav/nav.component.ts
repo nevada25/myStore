@@ -45,8 +45,8 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   login() {
-    this.authService.loginAndGet('test5@test5.com',
-      '12345678').subscribe(user => {
+    this.authService.loginAndGet('admin@mail.com',
+      'admin123').subscribe(user => {
       this.router.navigate(['/profile'])
     });
   }
