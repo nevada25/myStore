@@ -5,7 +5,6 @@ import { CmsRoutingModule } from './cms-routing.module';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { GridComponent } from './pages/grid/grid.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import {QuicklinkModule} from "ngx-quicklink";
 
 
 @NgModule({
@@ -16,8 +15,7 @@ import {QuicklinkModule} from "ngx-quicklink";
   ],
   imports: [
     CommonModule,
-    CmsRoutingModule,
-    QuicklinkModule
+    CmsRoutingModule
   ]
 })
 export class CmsModule { }

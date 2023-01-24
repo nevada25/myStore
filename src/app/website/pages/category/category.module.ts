@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 
 import {CategoryRoutingModule} from './category-routing.module';
 import {CategoryComponent} from "./category.component";
-import {QuicklinkModule} from "ngx-quicklink";
 
 
 @NgModule({
@@ -12,8 +11,7 @@ import {QuicklinkModule} from "ngx-quicklink";
   ],
   imports: [
     CommonModule,
-    CategoryRoutingModule,
-    QuicklinkModule
+    CategoryRoutingModule
   ]
 })
 export class CategoryModule {
